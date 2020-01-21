@@ -13,18 +13,36 @@ class securityController extends appController
         {
             $repository = new userRepository();
 //            die();
-            if($repository->get_user_from_login_page($_POST['login'],$_POST['password'])=='true')
+            $loaded_user=$repository->get_user_from_login_page($_POST['login'],$_POST['password']);
+//            if($repository->get_user_from_login_page($_POST['login'],$_POST['password']) instanceof User)
+            if($loaded_user instanceof User)
             {
+                $_SESSION["id"] = $loaded_user->getId();
+                $_SESSION["nickname"] = $loaded_user->getNickname();
+                $_SESSION["email"] = $loaded_user->getEmail();
+                $_SESSION["role"]= $loaded_user->getRole();
                 header("Location: ?page=news");
-
                 return;
             }
 
         }
 
 
-        $this->render('login');
+        $this->render('login',['messages'=>[]]);
     }
+
+    public function logout()
+    {
+        $_SESSION = array();
+        session_destroy();
+        $this->render('login',["messages"=>["Logout: Successful"]]);
+    }
+
+    public function logout_noaccess()
+    {
+        $this->render('login',["messages"=>["Logout: No access to this area"]]);
+    }
+
     public function registration()
     {
         if($this->isPost())
@@ -44,8 +62,9 @@ class securityController extends appController
 
     public function displayLogin()
     {
-        $this->render('login');
+        $this->render('login',['messages'=>[]]);
     }
+
 
     public function check_email_exist()
     {
@@ -61,6 +80,22 @@ class securityController extends appController
 
         }
     }
+
+    public function check_nickname_exist()
+    {
+        if ($this->isPost())
+        {
+
+            $repository = new userRepository();
+
+            $result = $repository->nickname_is_empty($_POST['nickname']);
+            //            die($_POST['email']);
+            http_response_code(200);
+            echo json_encode($result);
+
+        }
+    }
+
 
 
 

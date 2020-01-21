@@ -1,8 +1,30 @@
 function registerValidate()
 {
-
+    const apiUrl = 'http://localhost:80/PAIPROJECT';
         // alert("XD");
-        const apiUrl = 'http://localhost:80/PAIPROJECT';
+        $.ajax({
+            url:apiUrl + '/?page=nicknameValidation',
+            method:'post',
+            dataType:'json',
+            data:
+                {
+                    nickname:document.getElementById("nickname").value
+                },
+            success:function(res)
+            {
+                var nickname=document.getElementById("nickname").value;
+                if(res == "false")
+                {
+                    alert("nickname is already taken");
+                }
+                else if(String(nickname)==="")
+                {
+                    alert("Your nickname is empty");
+                }
+            }
+        });
+
+
         $.ajax({
             url: apiUrl + '/?page=emailValidation',
             method: 'post',
@@ -13,16 +35,11 @@ function registerValidate()
             success: function (res)
             {
                 var email=document.getElementById("registerEmail").value;
-                var nickname=document.getElementById("nickname").value;
                 var password=document.getElementById("firstRegisterPassword").value;
                 var repeated_password=document.getElementById("secondRegisterPassword").value;
 
 
-                if(String(nickname)==="")
-                {
-                    alert("Your nickname is empty");
-                }
-                else if (res == "false")
+                if (res == "false")
                 {
                     alert("This email is already taken");
                 }
