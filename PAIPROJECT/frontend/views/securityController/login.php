@@ -30,6 +30,12 @@
                 <div class="row h-75 align-items-center justify-content-center">
                     <form class="" action="?page=login" method="post">
                         <div class="form-group form-inline">
+                            <div class="">
+                                <?php foreach ($messages as $message):?>
+                                <div><?php echo $message;?></div>
+                                <?php endforeach;?>
+
+                            </div>
                             <label for="">EMAIL</label>
                             <input type="text" placeholder="Insert your email" name="login">
                         </div>
@@ -46,6 +52,12 @@
                         <button type="submit">REGISTER</button>
                     </form>
                 </div>
+<!--                <div class="row h-75 align-items-center justify-content-center">-->
+<!--                    <form method="post" action="?page=displayRegistration">-->
+<!--                        <button type="submit">REGISTER</button>-->
+<!--                    </form>-->
+<!--                </div>-->
+
 
             </div>
         </div>

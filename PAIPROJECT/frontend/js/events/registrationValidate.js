@@ -28,8 +28,31 @@ $(document).ready(function ()
 
                 });
                 break;
+            case "nickname":
+                $.ajax(
+                    {
+                        url: apiUrl + '/?page=nicknameValidation',
+                        method: 'post',
+                        dataType: 'json',
+                        data: {
+                            nickname: this.value
+                        },
+                        success: function (res)
+                        {
+                            if (res == "false")
+                            {
+                                document.getElementById("check_nickname").innerHTML = "You cannot use this nickname";
+                            }
+                            else
+                            {
+                                document.getElementById("check_nickname").innerHTML = "";
+                            }
+                        }
+
+                    });
+                break;
             case "secondRegisterPassword":
-                if (this.value != document.getElementById("firstRegisterPassword").value)
+                if (this.value !== document.getElementById("firstRegisterPassword").value) //zmienilem tu na !==
                 {
                     document.getElementById("check_password").innerHTML = "passwords arent similar";
                 } else

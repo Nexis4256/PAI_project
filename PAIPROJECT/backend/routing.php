@@ -2,6 +2,11 @@
 
 require_once 'backend/controllers/securityController.php';
 require_once 'backend/controllers/newsController.php';
+require_once 'backend/controllers/galleriesController.php';
+require_once 'backend/controllers/statsController.php';
+require_once 'backend/controllers/eventsController.php';
+require_once 'backend/controllers/resultsController.php';
+require_once 'backend/controllers/matchesController.php';
 
 
 class Routing {
@@ -33,6 +38,38 @@ class Routing {
             'emailValidation'=>[
                 'controller'=>'securityController',
                 'action'=>'check_email_exist'
+            ],
+            'nicknameValidation'=>[
+                'controller'=>'securityController',
+                'action'=>'check_nickname_exist'
+            ],
+            'logout'=>[
+                'controller'=>'securityController',
+                    'action'=>'logout'
+            ],
+            'galleries'=>[
+                'controller'=>'galleriesController',
+                'action'=>'print_galleries_board'
+            ],
+            'events'=>[
+                'controller'=>'eventsController',
+                'action'=>'print_events_board'
+            ],
+            'results'=>[
+                'controller'=>'resultsController',
+                'action'=>'print_results_board'
+            ],
+            'stats'=>[
+                'controller'=>'statsController',
+                'action'=>'print_stats_board'
+            ],
+            'matches'=>[
+                'controller'=>'matchesController',
+                'action'=>'print_matches_board'
+            ],
+            'noAccess'=>[
+                'controller'=>'securityController',
+                'action'=>'logout_noaccess'
             ]
         ];
     }

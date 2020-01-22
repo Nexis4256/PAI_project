@@ -33,6 +33,7 @@
                         <div class="form-group form-inline">
                             <label for="">NICKNAME</label>
                             <input type="text" placeholder="Insert your nickname" name="nickname" id="nickname">
+                            <div id="check_nickname"></div>
                         </div>
                         <div class="form-group form-inline">
                             <label for="">EMAIL</label>
