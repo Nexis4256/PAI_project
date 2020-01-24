@@ -51,16 +51,20 @@
                             <input type="password" placeholder="Repeat password" width="400px" name="repeated_password" id="secondRegisterPassword">
                             <div id="check_password"></div>
                         </div>
+                        <br>
+                        <br>
+                        <br>
                         <div class="row align-items-center justify-content-center">
                             <button class="btn btn-primary mr-5 w-25" type="button" onclick="registerValidate()">Accept</button>
+                            <button class="btn btn-primary ml-5 w-25" type="button" onclick="go_to_user_login()">Cancel</button>
                         </div>
                     </form>
                 </div>
-                <form action="?page=displayLogin" method="post">
-                    <div class="row align-items-center justify-content-center">
-                        <button class="btn btn-primary ml-5 w-25" type="submit">Cancel</button>
-                    </div>
-                </form>
+<!--                <form action="?page=displayLogin" method="post">-->
+<!--                    <div class="row align-items-center justify-content-center">-->
+<!--                        <button class="btn btn-primary ml-5 w-25" type="submit">Cancel</button>-->
+<!--                    </div>-->
+<!--                </form>-->
             </div>
         </div>
 
@@ -70,32 +74,32 @@
                     <div class="about_col_3 col-xs-3">
                         <div class="d-flex h-100 align-items-center justify-content-center">
                             <ul>
-                                <li>dupa</li>
-                                <li>dupa</li>
+                                <li>about</li>
+                                <li>about</li>
                             </ul>
                         </div>
                     </div>
                     <div class="about_col_3 col-xs-3">
                         <div class="d-flex h-100 align-items-center justify-content-center">
                             <ul>
-                                <li>dupa</li>
-                                <li>dupa</li>
+                                <li>about</li>
+                                <li>about</li>
                             </ul>
                         </div>
                     </div>
                     <div class="about_col_3 col-xs-3">
                         <div class="d-flex h-100 align-items-center justify-content-center">
                             <ul>
-                                <li>dupa</li>
-                                <li>dupa</li>
+                                <li>about</li>
+                                <li>about</li>
                             </ul>
                         </div>
                     </div>
                     <div class="about_col_3 col-xs-3">
                         <div class="d-flex h-100 align-items-center justify-content-center">
                             <ul>
-                                <li>dupa</li>
-                                <li>dupa</li>
+                                <li>about</li>
+                                <li>about</li>
                             </ul>
                         </div>
                     </div>
@@ -139,5 +143,7 @@
         <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
         <script src="frontend/js/events/registrationValidate.js"></script>
         <script src="frontend/js/functions/registrationFunctionValidate.js"></script>
+        <script src="frontend/js/functions/user_go_to.js"></script>
+
     </body>
 </html>

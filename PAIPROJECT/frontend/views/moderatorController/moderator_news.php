@@ -4,6 +4,15 @@ if (!isset($_SESSION['id']))
     header("Location: ?page=noAccess");
 }
 ?>
+<?php
+if (!isset($_SESSION['id']))
+{
+    header("Location: ?page=noAccess");
+} else if (($_SESSION['role'] !== "moderator") and ($_SESSION['role'] !== "admin"))
+{
+    header("Location: ?page=noAccess");
+}
+?>
 
 <!doctype html>
 <html lang="en">
@@ -23,12 +32,11 @@ if (!isset($_SESSION['id']))
 
         <title>Hello, world!</title>
     </head>
-    <body>
 
         <!--        navpart CONTENT CONTENT CONTENT -->
         <!--        navpart CONTENT CONTENT CONTENT -->
         <!--        navpart CONTENT CONTENT CONTENT -->
-        <?php include('frontend/views/navbar/navbar.php'); ?>
+        <?php include('frontend/views/navbar/moderator_navbar.php'); ?>
         <!--        MAIN PART CONTENT-->
         <!--        MAIN PART CONTENT-->
         <!--        MAIN PART CONTENT-->
@@ -36,24 +44,48 @@ if (!isset($_SESSION['id']))
         <div class="container" id="main_part_container">
             <br>
             <br>
-            <?php foreach($news as $news_example):?>
-            <div class="news_row row w-75 justify-content-center">
-                <div class="col-sm-2 news_first_col">
-                    <img src="<?php echo $news_example->getCountryFlagDir(); ?>" alt="poland">
-                </div>
-                <div class="news_second_col col-sm-10">
-                    <p><?php echo $news_example->getNewsShortPost(); ?> </p>
-                    <form action="?page=displayNewsLongPost" method="post">
-                        <input type="text" style="display: none" name="news_id" value="<?php echo $news_example->getId(); ?>">
-                        <input type="text" style="display:none" name="news_nickname" value="<?php echo $news_example->getNickname(); ?>">
-                        <input type="text" style="display:none" name="news_short_post" value="<?php echo $news_example->getNewsShortPost(); ?>">
-                        <input type="text" style="display:none" name="news_file_dir" value="<?php   echo $news_example->getNewsFileDir(); ?>">
-                        <input type="text" style="display:none" name="news_country_flag_dir" value="<?php  echo $news_example->getCountryFlagDir(); ?>">
-                        <button type="submit" class="btn btn-primary">Display Post</button>
+            <div class="row justify-content-center">
+                <button class="btn btn-primary" onclick="addNews()" id="add_news_button">Dodaj news</button>
+            </div>
+            <br>
+            <br>
+            <div class="add_news_row row w-100 m-0 justify-content-center">
+                <div id="form_before_content" style="display:none">
+                    <form method="POST" action="?page=add_news_post">
+                        <div class="form-group">
+                            <label for="country" class="text-primary">Country</label>
+                            <select class="form-control " name="country">
+                                <?php foreach ($flags as $flags_example): ?>
+                                    <option><?php echo $flags_example->getCountryName(); ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            <br>
+                            <input type="text" class="form-control" placeholder="Input short Description" name="news_short_post">
+                            <br>
+                            <textarea class="form-control" name="news_long_post">Add news post(if you want to add new line use BR html tag)</textarea>
+                            <br>
+                            <div class="container text-center">
+                                <button type="submit" class="add_post_button btn btn-primary">Click to Add Post</button>
+                                <button type="button" onclick="go_to_moderator_news()" class="btn btn-primary">Cancel</button>
+                            </div>
+                            <br>
+                        </div>
                     </form>
                 </div>
             </div>
+            <div id="moderator_news_content">
+            <?php foreach ($news as $news_example): ?>
+                <div class="news_row row w-75 justify-content-center">
+                    <div class="col-sm-2 news_first_col">
+                        <img src="<?php echo $news_example->getCountryFlagDir() ?>" alt="poland">
+                    </div>
+                    <div class="news_second_col col-sm-10">
+                        <p><?php echo $news_example->getNewsShortPost() ?> </p>
+                    </div>
+                    <button id="" class="btn btn-dark" onclick="deleteNews('<?php echo $news_example->getId()?>','<?php echo $news_example->getNewsFileDir()?>')">DELETE POST</button>
+                </div>
             <?php endforeach; ?>
+            </div>
 
         </div>
 
@@ -124,5 +156,11 @@ if (!isset($_SESSION['id']))
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
                 integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
                 crossorigin="anonymous"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+        <script src="frontend/js/functions/add_new_news.js"></script>
+        <script src="frontend/js/functions/delete_news.js"></script>
+        <script src="frontend/js/functions/moderator_go_to.js"></script>
+
+
     </body>
 </html>

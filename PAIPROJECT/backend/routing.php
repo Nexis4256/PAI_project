@@ -7,6 +7,9 @@ require_once 'backend/controllers/statsController.php';
 require_once 'backend/controllers/eventsController.php';
 require_once 'backend/controllers/resultsController.php';
 require_once 'backend/controllers/matchesController.php';
+require_once 'backend/controllers/moderatorController.php';
+require_once 'backend/controllers/adminController.php';
+require_once 'backend/controllers/uploadController.php';
 
 
 class Routing {
@@ -70,6 +73,50 @@ class Routing {
             'noAccess'=>[
                 'controller'=>'securityController',
                 'action'=>'logout_noaccess'
+            ],
+            'moderator_news'=>[
+                'controller'=>'moderatorController',
+                'action'=>'print_moderator_news_board'
+            ],
+            'moderator_events'=>[
+                'controller'=>'moderatorController',
+                'action'=>'print_moderator_events_board'
+            ],
+            'moderator_galleries'=>[
+                'controller'=>'moderatorController',
+                'action'=>'print_moderator_galleries_board'
+            ],
+            'moderator_panel'=>[
+                'controller'=>'moderatorController',
+                'action'=>'print_moderator_panel'
+            ],
+            'admin_panel'=>[
+                'controller'=>'adminController',
+                'action'=>'print_admin_panel'
+            ],
+            'add_news_post'=>[
+                'controller'=>'moderatorController',
+                    'action'=>'add_news_post'
+            ],
+            'displayNewsLongPost'=>[
+                'controller'=>'newsController',
+                'action'=>'print_news_long_board'
+            ],
+            'deleteNewsPost'=>[
+                'controller'=>'moderatorController',
+                'action'=>'delete_news_post'
+            ],
+            'gallery_image_swap_left'=>[
+                'controller'=>'galleriesController',
+                'action'=>'print_swap_left_image'
+            ],
+            'add_galleries_image'=>[
+                'controller'=>'uploadController',
+                'action'=>'upload_image'
+            ],
+            'getUsersByRole'=>[
+                'controller'=>'adminController',
+                'action'=>'get_all_users_by_role'
             ]
         ];
     }

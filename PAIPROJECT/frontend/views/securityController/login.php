@@ -28,7 +28,7 @@
         <div class="form">
             <div class="form_container container">
                 <div class="row h-75 align-items-center justify-content-center">
-                    <form class="" action="?page=login" method="post">
+                    <form class="form_login_all" action="?page=login" method="post">
                         <div class="form-group form-inline">
                             <div class="">
                                 <?php foreach ($messages as $message):?>
@@ -43,14 +43,21 @@
                             <label for="">PASSWORD</label>
                             <input type="password" placeholder="Repeat password" width="400px" name="password">
                         </div>
+                        <br>
+                        <br>
                         <div class="row align-items-center justify-content-center">
                             <button class="btn btn-primary mr-5 w-25" type="submit">Accept</button>
                             <button class="btn btn-primary ml-5 w-25" type="submit">Cancel</button>
                         </div>
                     </form>
-                    <form method="post" action="?page=displayRegistration">
-                        <button type="submit">REGISTER</button>
-                    </form>
+<!--                    <form method="post" action="?page=displayRegistration">-->
+<!--                        <button type="submit">REGISTER</button>-->
+<!--                    </form>-->
+                </div>
+                <div class="row justify-content-center">
+                <form method="post" action="?page=displayRegistration">
+                    <button type="submit" class="btn btn-primary">REGISTER</button>
+                </form>
                 </div>
 <!--                <div class="row h-75 align-items-center justify-content-center">-->
 <!--                    <form method="post" action="?page=displayRegistration">-->
@@ -68,32 +75,32 @@
                     <div class="about_col_3 col-xs-3">
                         <div class="d-flex h-100 align-items-center justify-content-center">
                             <ul>
-                                <li>dupa</li>
-                                <li>dupa</li>
+                                <li>about</li>
+                                <li>about</li>
                             </ul>
                         </div>
                     </div>
                     <div class="about_col_3 col-xs-3">
                         <div class="d-flex h-100 align-items-center justify-content-center">
                             <ul>
-                                <li>dupa</li>
-                                <li>dupa</li>
+                                <li>about</li>
+                                <li>about</li>
                             </ul>
                         </div>
                     </div>
                     <div class="about_col_3 col-xs-3">
                         <div class="d-flex h-100 align-items-center justify-content-center">
                             <ul>
-                                <li>dupa</li>
-                                <li>dupa</li>
+                                <li>about</li>
+                                <li>about</li>
                             </ul>
                         </div>
                     </div>
                     <div class="about_col_3 col-xs-3">
                         <div class="d-flex h-100 align-items-center justify-content-center">
                             <ul>
-                                <li>dupa</li>
-                                <li>dupa</li>
+                                <li>about</li>
+                                <li>about</li>
                             </ul>
                         </div>
                     </div>

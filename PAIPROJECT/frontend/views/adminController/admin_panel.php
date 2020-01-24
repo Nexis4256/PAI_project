@@ -2,6 +2,9 @@
 if (!isset($_SESSION['id']))
 {
     header("Location: ?page=noAccess");
+} else if ($_SESSION['role'] !== "admin")
+{
+    header("Location: ?page=noAccess");
 }
 ?>
 
@@ -18,6 +21,7 @@ if (!isset($_SESSION['id']))
               integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
               crossorigin="anonymous">
         <link type="text/css" rel="stylesheet" href="frontend/css/board_news_layout_css.css">
+        <link type="text/css" rel="stylesheet" href="frontend/css/administrator_panel_css.css">
         <link href="https://fonts.googleapis.com/css?family=Noto+Serif+JP&display=swap" rel="stylesheet">
         <script src="https://kit.fontawesome.com/608fe230d5.js" crossorigin="anonymous"></script>
 
@@ -28,7 +32,7 @@ if (!isset($_SESSION['id']))
         <!--        navpart CONTENT CONTENT CONTENT -->
         <!--        navpart CONTENT CONTENT CONTENT -->
         <!--        navpart CONTENT CONTENT CONTENT -->
-        <?php include('frontend/views/navbar/navbar.php'); ?>
+        <?php include('frontend/views/navbar/moderator_navbar.php'); ?>
         <!--        MAIN PART CONTENT-->
         <!--        MAIN PART CONTENT-->
         <!--        MAIN PART CONTENT-->
@@ -36,25 +40,27 @@ if (!isset($_SESSION['id']))
         <div class="container" id="main_part_container">
             <br>
             <br>
-            <?php foreach($news as $news_example):?>
-            <div class="news_row row w-75 justify-content-center">
-                <div class="col-sm-2 news_first_col">
-                    <img src="<?php echo $news_example->getCountryFlagDir(); ?>" alt="poland">
-                </div>
-                <div class="news_second_col col-sm-10">
-                    <p><?php echo $news_example->getNewsShortPost(); ?> </p>
-                    <form action="?page=displayNewsLongPost" method="post">
-                        <input type="text" style="display: none" name="news_id" value="<?php echo $news_example->getId(); ?>">
-                        <input type="text" style="display:none" name="news_nickname" value="<?php echo $news_example->getNickname(); ?>">
-                        <input type="text" style="display:none" name="news_short_post" value="<?php echo $news_example->getNewsShortPost(); ?>">
-                        <input type="text" style="display:none" name="news_file_dir" value="<?php   echo $news_example->getNewsFileDir(); ?>">
-                        <input type="text" style="display:none" name="news_country_flag_dir" value="<?php  echo $news_example->getCountryFlagDir(); ?>">
-                        <button type="submit" class="btn btn-primary">Display Post</button>
-                    </form>
+            <div class="text-center text-success">
+                <h1>ADMINISTRATOR PANEL</h1>
+            </div>
+            <div class="justify-content-center">
+                <label class="text-light" for="check_role">Choose category</label>
+                <select id="check_role" class="custom-select w-100">
+                    <option>Admin</option>
+                    <option>Moderator</option>
+                    <option>User</option>
+                </select>
+                <div class="row">
+                    <button class="click_to_search btn btn-primary mt-5" type="button" onclick="getUsersByRole()">Click
+                        to search
+                    </button>
                 </div>
             </div>
-            <?php endforeach; ?>
+            <br>
+            <br>
+            <div class="users_list container p-0 w-75">
 
+            </div>
         </div>
 
         <div class="about">
@@ -124,5 +130,10 @@ if (!isset($_SESSION['id']))
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
                 integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
                 crossorigin="anonymous"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+        <script src="frontend/js/functions/moderator_go_to.js"></script>
+        <script src="frontend/js/functions/find_users.js"></script>
     </body>
 </html>

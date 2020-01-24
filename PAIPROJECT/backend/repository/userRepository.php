@@ -81,4 +81,24 @@ class userRepository extends repository
 
         return "false";
     }
+
+    public function get_all_users_by_role($role)
+    {
+        $stmt=$this->database->connect()->prepare('
+        SELECT users.user_id id, users.role, users.nickname, users.email FROM users WHERE role=:role');
+
+        $stmt->bindParam(':role',$role,PDO::PARAM_STR);
+        $stmt->execute();
+        $this->database->disconnect();
+        $users=null;
+        $users=$stmt->fetchall(PDO::FETCH_ASSOC);
+
+        if($users==null)
+        {
+            return false;
+        }
+
+        return $users;
+    }
+
 }
