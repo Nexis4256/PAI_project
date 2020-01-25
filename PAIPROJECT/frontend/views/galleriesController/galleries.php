@@ -1,6 +1,5 @@
-
 <?php
-if(!isset($_SESSION['id']))
+if (!isset($_SESSION['id']))
 {
     header("Location: ?page=noAccess");
 }
@@ -19,6 +18,7 @@ if(!isset($_SESSION['id']))
               integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
               crossorigin="anonymous">
         <link type="text/css" rel="stylesheet" href="frontend/css/board_news_layout_css.css">
+        <link type="text/css" rel="stylesheet" href="frontend/css/galleries_css.css">
         <link href="https://fonts.googleapis.com/css?family=Noto+Serif+JP&display=swap" rel="stylesheet">
         <script src="https://kit.fontawesome.com/608fe230d5.js" crossorigin="anonymous"></script>
 
@@ -29,84 +29,36 @@ if(!isset($_SESSION['id']))
         <!--        navpart CONTENT CONTENT CONTENT -->
         <!--        navpart CONTENT CONTENT CONTENT -->
         <!--        navpart CONTENT CONTENT CONTENT -->
-
-        <div class="navpart">
-            <div class="container" id="navbar_container">
-                <nav class="navbar p-0">
-                    <div class="nav_row row m-0">
-                        <div class="nav_col_3 col-xs-3 p-0 text-center">
-                            <div class="d-flex h-100 align-items-center justify-content-center">
-                                <a href="?page=news" class="navbar-brand p-0 m-0 h-100">
-                                    <img src="sources/img/logo_bw.png" id="logo">
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="nav_col_2 col-xs-2 p-0 text-center">
-                            <div class="d-flex h-100 align-items-center justify-content-center">
-                                <a class="" href="?page=news">News</a>
-                            </div>
-                        </div>
-                        <div class="nav_col_2 col-xs-2 p-0 text-center">
-                            <div class="d-flex h-100 align-items-center justify-content-center">
-                                <a class="" href="?page=matches">Matches</a>
-                            </div>
-                        </div>
-                        <div class="nav_col_2 col-xs-2 p-0 text-center">
-                            <div class="d-flex h-100 align-items-center justify-content-center">
-                                <a class="" href="?page=results">Results</a>
-                            </div>
-                        </div>
-
-                        <div class="nav_col_3 col-xs-3 p-0 text-center">
-                            <div class="d-flex h-100 align-items-center justify-content-center">
-                                <div class="dropdown show">
-                                    <a class="" href="#" role="button"
-                                       id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                                       aria-expanded="false">
-                                        <i class="fas fa-bars fa-3x" id="hamburger_wrap"></i>
-                                    </a>
-
-                                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuLink">
-                                        <a class="dropdown-item" href="?page=events"><p class="text-center">Events</p></a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="?page=stats"><p class="text-center">Stats</p></a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="?page=galleries"><p class="text-center">Galleries</p></a>
-                                        <div class="dropdown-divider"></div>
-                                        <!--                                        <form action="?page=logout" method="post">-->
-                                        <a class="dropdown-item" href="?page=logout" ><p class="text-center">Logout</p></a>
-                                        <!--                                        <p class="text-center">Logout</p>-->
-                                        <!--                                            <button type="submit"><p class="text-center">Logout</p></button>-->
-                                        <div class="dropdown-divider"></div>
-                                        <!--                                        </form>-->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </nav>
-            </div>
-        </div>
-
+        <?php include('frontend/views/navbar/navbar.php'); ?>
         <!--        MAIN PART CONTENT-->
         <!--        MAIN PART CONTENT-->
         <!--        MAIN PART CONTENT-->
 
         <div class="container" id="main_part_container">
-            <p>dwadwa</p>
-            <p>dwadwa</p>
-            <p>dwadwa</p>
-            <p>dwadwa</p>
-            <p>dwadwa</p>
-            <p>dwadwa</p>
-            <p>dwadwa</p>
-            <p>dwadwa</p>
-            <p>dwadwa</p>
-            <p>dwadwa</p>
-            <p>dwadwa</p>
-            <p>dwadwa</p>
-            <p>dwadwa</p>
+            <br>
+            <br>
+            <div class="gallery_row row w-100 h-100  m-0 justify-content-center">
+                <div class="flex-column">
+                    <?php foreach ($gallery as $gallery_example): ?>
+                        <div class="row justify-content-center">
+                            <h1 class="text-light text-capitalize"><?php echo $gallery_example->getName() ?></h1>
+                        </div>
+                        <br>
+                        <div class="gallery_loop<?php echo $gallery_example->getId() ?> my-auto" id="gallery_loop_container">
+                            <a onclick="swap_left('0',<?php echo $gallery_example->getId() ?>)">
+                                <i class="fas fa-chevron-left text-primary mr-5 fa-2x"></i>
+                            </a>
+                            <img src="<?php echo $gallery_example->getGalleryImageDirectoryByIndex(0); ?>"
+                                 alt="image" style="width:250px; height:250px;">
+                            <a onclick="swap_right('0',<?php echo $gallery_example->getId() ?>)">
+                                <i class="fas fa-chevron-right fa-2x text-primary ml-5"></i>
+                            </a>
+                            <br>
+                            <hr>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
         </div>
 
         <div class="about">
@@ -115,32 +67,32 @@ if(!isset($_SESSION['id']))
                     <div class="about_col_3 col-xs-3">
                         <div class="d-flex h-100 align-items-center justify-content-center">
                             <ul>
-                                <li>dupa</li>
-                                <li>dupa</li>
+                                <li>about</li>
+                                <li>about</li>
                             </ul>
                         </div>
                     </div>
                     <div class="about_col_3 col-xs-3">
                         <div class="d-flex h-100 align-items-center justify-content-center">
                             <ul>
-                                <li>dupa</li>
-                                <li>dupa</li>
+                                <li>about</li>
+                                <li>about</li>
                             </ul>
                         </div>
                     </div>
                     <div class="about_col_3 col-xs-3">
                         <div class="d-flex h-100 align-items-center justify-content-center">
                             <ul>
-                                <li>dupa</li>
-                                <li>dupa</li>
+                                <li>about</li>
+                                <li>about</li>
                             </ul>
                         </div>
                     </div>
                     <div class="about_col_3 col-xs-3">
                         <div class="d-flex h-100 align-items-center justify-content-center">
                             <ul>
-                                <li>dupa</li>
-                                <li>dupa</li>
+                                <li>about</li>
+                                <li>about</li>
                             </ul>
                         </div>
                     </div>
@@ -176,5 +128,10 @@ if(!isset($_SESSION['id']))
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
                 integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
                 crossorigin="anonymous"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+
+        <script src="frontend/js/functions/gallery_swap_images.js"></script>
     </body>
 </html>

@@ -2,6 +2,9 @@
 if (!isset($_SESSION['id']))
 {
     header("Location: ?page=noAccess");
+} else if (($_SESSION['role'] !== "moderator") and ($_SESSION['role'] !== "admin"))
+{
+    header("Location: ?page=noAccess");
 }
 ?>
 
@@ -18,6 +21,10 @@ if (!isset($_SESSION['id']))
               integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
               crossorigin="anonymous">
         <link type="text/css" rel="stylesheet" href="frontend/css/board_news_layout_css.css">
+        <link type="text/css" rel="stylesheet" href="frontend/css/galleries_css.css"> <!-- moderator -->
+        <link type="text/css" rel="stylesheet" href="frontend/css/moderator_galleries_css.css"> <!-- moderator -->
+
+
         <link href="https://fonts.googleapis.com/css?family=Noto+Serif+JP&display=swap" rel="stylesheet">
         <script src="https://kit.fontawesome.com/608fe230d5.js" crossorigin="anonymous"></script>
 
@@ -28,34 +35,72 @@ if (!isset($_SESSION['id']))
         <!--        navpart CONTENT CONTENT CONTENT -->
         <!--        navpart CONTENT CONTENT CONTENT -->
         <!--        navpart CONTENT CONTENT CONTENT -->
-        <?php include('frontend/views/navbar/navbar.php'); ?>
+        <?php include('frontend/views/navbar/moderator_navbar.php'); ?>
         <!--        MAIN PART CONTENT-->
         <!--        MAIN PART CONTENT-->
         <!--        MAIN PART CONTENT-->
 
         <div class="container" id="main_part_container">
+            <!--            <button onclick="addImages()" >dwadwa</button>-->
+            <br>
+            <div class="row m-0 justify-content-center">
+                <button type="button" class="btn btn-primary" id="add_image_button" onclick="addImages()">Add Image
+                </button>
+            </div>
+
             <br>
             <br>
-            <?php foreach($news as $news_example):?>
-            <div class="news_row row w-75 justify-content-center">
-                <div class="col-sm-2 d-flex news_first_col align-items-center justify-content-center" style="border:none">
-                    <img src="<?php echo $news_example->getCountryFlagDir(); ?>" alt="poland">
-                </div>
-                <div class="news_second_col col-sm-10 justify-content-center">
-                    <p class="text-center m-0 mt-5"><?php echo $news_example->getNewsShortPost(); ?> </p>
-                    <form action="?page=displayNewsLongPost" method="post" class="text-center">
-                        <input type="text" style="display: none" name="news_id" value="<?php echo $news_example->getId(); ?>">
-                        <input type="text" style="display:none" name="news_nickname" value="<?php echo $news_example->getNickname(); ?>">
-                        <input type="text" style="display:none" name="news_short_post" value="<?php echo $news_example->getNewsShortPost(); ?>">
-                        <input type="text" style="display:none" name="news_file_dir" value="<?php   echo $news_example->getNewsFileDir(); ?>">
-                        <input type="text" style="display:none" name="news_country_flag_dir" value="<?php  echo $news_example->getCountryFlagDir(); ?>">
-                        <button type="submit" class="btn btn-dark float-right mb-1">Display Post</button>
+            <div class="container w-100 p-0 text-center">
+                <div class="row justify-content-center" id="add_image_container" style="display:none;">
+                    <form action="?page=add_galleries_image" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="gallery_name" class="text-success">Gallery Name</label>
+                            <select class="form-control " name="gallery_name">
+                                <?php foreach ($gallery as $gallery_example): ?>
+                                    <option><?php echo $gallery_example->getName(); ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Wished file name" name="wished_file_name">
+                            <input class="btn btn-dark mt-3" type="file" placeholder="Upload Image" name="uploaded_file" id="uploaded_file">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Click to add Image</button>
+                        <button type="button" class="btn btn-primary" onclick="go_to_moderator_galleries()">Cancel</button>
                     </form>
                 </div>
             </div>
-            <?php endforeach; ?>
 
+            <div class="gallery_row row w-100 h-100  m-0 justify-content-center" id="moderator_galleries_content">
+                <div class="flex-column">
+                    <?php foreach ($gallery as $gallery_example): ?>
+                        <div class="row justify-content-center">
+                            <p class="text-light text-capitalize"><?php echo $gallery_example->getName() ?></p>
+                        </div>
+                        <br>
+                        <div class="gallery_loop<?php echo $gallery_example->getId() ?> my-auto"
+                             id="gallery_loop_container">
+                            <a onclick="swap_left('0',<?php echo $gallery_example->getId() ?>)">
+                                <i class="fas fa-chevron-left fa-2x text-primary mr-5"></i>
+                            </a>
+                            <img src="<?php echo $gallery_example->getGalleryImageDirectoryByIndex(0); ?>"
+                                 alt="image" style="width:250px; height:250px;">
+                            <a onclick="swap_right('0',<?php echo $gallery_example->getId() ?>)">
+                                <i class="fas fa-chevron-right fa-2x text-primary ml-5"></i>
+                            </a>
+                            <br>
+                            <hr>
+                        </div>
+                        <div class="row justify-content-center">
+                            <button class="btn btn-primary" onclick="deleteImage(<?php echo $gallery_example->getId() ?>)">DELETE IMAGE</button>
+                        </div>
+                        <br>
+                    <?php endforeach; ?>
+                </div>
+            </div>
         </div>
+
 
         <div class="about">
             <div class="container p-0" id="about_part_container">
@@ -124,5 +169,13 @@ if (!isset($_SESSION['id']))
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
                 integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
                 crossorigin="anonymous"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+
+        <script src="frontend/js/functions/gallery_swap_images.js"></script>
+        <script src="frontend/js/functions/add_new_images.js"></script>
+        <script src="frontend/js/functions/moderator_go_to.js"></script>
+        <script src="frontend/js/functions/delete_image.js"></script>
     </body>
 </html>

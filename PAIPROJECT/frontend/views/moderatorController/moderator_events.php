@@ -1,5 +1,10 @@
+
 <?php
 if (!isset($_SESSION['id']))
+{
+    header("Location: ?page=noAccess");
+}
+else if(($_SESSION['role']!=="moderator") and ($_SESSION['role']!=="admin"))
 {
     header("Location: ?page=noAccess");
 }
@@ -28,33 +33,25 @@ if (!isset($_SESSION['id']))
         <!--        navpart CONTENT CONTENT CONTENT -->
         <!--        navpart CONTENT CONTENT CONTENT -->
         <!--        navpart CONTENT CONTENT CONTENT -->
-        <?php include('frontend/views/navbar/navbar.php'); ?>
+        <?php include('frontend/views/navbar/moderator_navbar.php'); ?>
         <!--        MAIN PART CONTENT-->
         <!--        MAIN PART CONTENT-->
         <!--        MAIN PART CONTENT-->
 
         <div class="container" id="main_part_container">
-            <br>
-            <br>
-            <?php foreach($news as $news_example):?>
-            <div class="news_row row w-75 justify-content-center">
-                <div class="col-sm-2 d-flex news_first_col align-items-center justify-content-center" style="border:none">
-                    <img src="<?php echo $news_example->getCountryFlagDir(); ?>" alt="poland">
-                </div>
-                <div class="news_second_col col-sm-10 justify-content-center">
-                    <p class="text-center m-0 mt-5"><?php echo $news_example->getNewsShortPost(); ?> </p>
-                    <form action="?page=displayNewsLongPost" method="post" class="text-center">
-                        <input type="text" style="display: none" name="news_id" value="<?php echo $news_example->getId(); ?>">
-                        <input type="text" style="display:none" name="news_nickname" value="<?php echo $news_example->getNickname(); ?>">
-                        <input type="text" style="display:none" name="news_short_post" value="<?php echo $news_example->getNewsShortPost(); ?>">
-                        <input type="text" style="display:none" name="news_file_dir" value="<?php   echo $news_example->getNewsFileDir(); ?>">
-                        <input type="text" style="display:none" name="news_country_flag_dir" value="<?php  echo $news_example->getCountryFlagDir(); ?>">
-                        <button type="submit" class="btn btn-dark float-right mb-1">Display Post</button>
-                    </form>
-                </div>
-            </div>
-            <?php endforeach; ?>
-
+            <p>dwadwa</p>
+            <p>dwadwa</p>
+            <p>dwadwa</p>
+            <p>dwadwa</p>
+            <p>dwadwa</p>
+            <p>dwadwa</p>
+            <p>dwadwa</p>
+            <p>dwadwa</p>
+            <p>dwadwa</p>
+            <p>dwadwa</p>
+            <p>dwadwa</p>
+            <p>dwadwa</p>
+            <p>dwadwa</p>
         </div>
 
         <div class="about">

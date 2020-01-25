@@ -35,9 +35,7 @@ class Database{
             die("Connection failed: " . $e->getMessage());
         }
     }
-    public function lastInsertId(){
-        return $this->conn->lastInsertId();
-    }
+
     public function disconnect(){
         $this->conn=null;
     }

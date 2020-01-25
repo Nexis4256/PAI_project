@@ -50,7 +50,7 @@ class securityController extends appController
             $repository = new userRepository();
             $repository->add_user_to_database($_POST['email'],$_POST['password'],'user',$_POST['nickname']);
             $this->clear_request();
-            $this->login();
+//            $this->login();
         }
 
         $this->render('registration');

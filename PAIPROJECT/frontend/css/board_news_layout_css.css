@@ -51,6 +51,7 @@ html,body
     /*height: 100%;*/
     /*margin:0;*/
     padding:0;
+    /*margin-bottom: 10px;*/
 }
 
 .navbar
@@ -154,6 +155,7 @@ a
     width:60vw;
     min-height: 80vh;
     background-color: #2D3844;
+    /*background-color: red;*/
     padding:0;
 }
 
@@ -162,6 +164,47 @@ a
     padding:0;
     margin:0;
 }
+
+.news_first_col
+{
+    width:20%;
+    color:white;
+    border:solid 1px black !important;
+    /*margin:0 auto;*/
+}
+
+.news_second_col
+{
+    width:80%;
+    color:white;
+    border:solid 1px black;
+}
+
+.news_row
+{
+    background-color: #2699FB;
+    margin:0 auto;
+    margin-bottom:20px;
+}
+
+.add_news_row
+{
+    /*background-color: #2699FB;*/
+    margin:0 auto;
+    /*margin-bottom:20px;*/
+}
+
+
+.table_container
+{
+    /*width:60%*/
+}
+
+th
+{
+    border-color:black !important;;
+}
+
 
 
 /*BOTTOM PART CONTENT*/

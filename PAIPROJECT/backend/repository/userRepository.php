@@ -11,6 +11,9 @@ class userRepository extends repository
         $stmt = $this->database->connect()->prepare('
             SELECT email,nickname,user_id,role FROM users WHERE email = :email and password=:password
         ');
+        $password=md5($password);
+//        echo $password;
+//        die();
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->bindParam(':password', $password, PDO::PARAM_STR);
         $stmt->execute();
@@ -33,6 +36,10 @@ class userRepository extends repository
         $stmt = $this->database->connect()->prepare('
             INSERT INTO `users` (`user_id`, `role`, `nickname`, `email`, `password`) VALUES (NULL, :role, :nickname, :email, :password);
         ');
+//        echo $password;
+//        die();
+
+        $password=md5($password);
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->bindParam(':password', $password, PDO::PARAM_STR);
         $stmt->bindParam(':nickname', $nickname, PDO::PARAM_STR);
@@ -81,4 +88,24 @@ class userRepository extends repository
 
         return "false";
     }
+
+    public function get_all_users_by_role($role)
+    {
+        $stmt=$this->database->connect()->prepare('
+        SELECT users.user_id id, users.role, users.nickname, users.email FROM users WHERE role=:role');
+
+        $stmt->bindParam(':role',$role,PDO::PARAM_STR);
+        $stmt->execute();
+        $this->database->disconnect();
+        $users=null;
+        $users=$stmt->fetchall(PDO::FETCH_ASSOC);
+
+        if($users==null)
+        {
+            return false;
+        }
+
+        return $users;
+    }
+
 }

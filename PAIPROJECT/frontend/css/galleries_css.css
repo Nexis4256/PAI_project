@@ -1,0 +1,17 @@
+.gallery_row
+{
+    min-height: inherit;
+}
+
+
+#gallery_loop_container
+{
+    margin-bottom: 5vh !important;
+    /*margin-bottom: 30px !important;*/
+}
+
+
+#gallery_loop_container hr
+{
+    background-color: white;
+}

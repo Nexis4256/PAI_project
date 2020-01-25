@@ -29,84 +29,125 @@ if(!isset($_SESSION['id']))
         <!--        navpart CONTENT CONTENT CONTENT -->
         <!--        navpart CONTENT CONTENT CONTENT -->
         <!--        navpart CONTENT CONTENT CONTENT -->
-
-        <div class="navpart">
-            <div class="container" id="navbar_container">
-                <nav class="navbar p-0">
-                    <div class="nav_row row m-0">
-                        <div class="nav_col_3 col-xs-3 p-0 text-center">
-                            <div class="d-flex h-100 align-items-center justify-content-center">
-                                <a href="?page=news" class="navbar-brand p-0 m-0 h-100">
-                                    <img src="sources/img/logo_bw.png" id="logo">
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="nav_col_2 col-xs-2 p-0 text-center">
-                            <div class="d-flex h-100 align-items-center justify-content-center">
-                                <a class="" href="?page=news">News</a>
-                            </div>
-                        </div>
-                        <div class="nav_col_2 col-xs-2 p-0 text-center">
-                            <div class="d-flex h-100 align-items-center justify-content-center">
-                                <a class="" href="?page=matches">Matches</a>
-                            </div>
-                        </div>
-                        <div class="nav_col_2 col-xs-2 p-0 text-center">
-                            <div class="d-flex h-100 align-items-center justify-content-center">
-                                <a class="" href="?page=results">Results</a>
-                            </div>
-                        </div>
-
-                        <div class="nav_col_3 col-xs-3 p-0 text-center">
-                            <div class="d-flex h-100 align-items-center justify-content-center">
-                                <div class="dropdown show">
-                                    <a class="" href="#" role="button"
-                                       id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                                       aria-expanded="false">
-                                        <i class="fas fa-bars fa-3x" id="hamburger_wrap"></i>
-                                    </a>
-
-                                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuLink">
-                                        <a class="dropdown-item" href="?page=events"><p class="text-center">Events</p></a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="?page=stats"><p class="text-center">Stats</p></a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="?page=galleries"><p class="text-center">Galleries</p></a>
-                                        <div class="dropdown-divider"></div>
-                                        <!--                                        <form action="?page=logout" method="post">-->
-                                        <a class="dropdown-item" href="?page=logout" ><p class="text-center">Logout</p></a>
-                                        <!--                                        <p class="text-center">Logout</p>-->
-                                        <!--                                            <button type="submit"><p class="text-center">Logout</p></button>-->
-                                        <div class="dropdown-divider"></div>
-                                        <!--                                        </form>-->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </nav>
-            </div>
-        </div>
-
+        <?php include('frontend/views/navbar/navbar.php'); ?>
         <!--        MAIN PART CONTENT-->
         <!--        MAIN PART CONTENT-->
         <!--        MAIN PART CONTENT-->
 
         <div class="container" id="main_part_container">
-            <p>dwadwa</p>
-            <p>dwadwa</p>
-            <p>dwadwa</p>
-            <p>dwadwa</p>
-            <p>dwadwa</p>
-            <p>dwadwa</p>
-            <p>dwadwa</p>
-            <p>dwadwa</p>
-            <p>dwadwa</p>
-            <p>dwadwa</p>
-            <p>dwadwa</p>
-            <p>dwadwa</p>
-            <p>dwadwa</p>
+            <br>
+            <br>
+            <div class="container justify-content-center">
+                <div class="table_container row justify-content-center text-center m-0">
+                    <table class="table table-bordered" style="color:antiquewhite">
+                        <thead class="thead-light text-center">
+                        <th scope="col">Time</th>
+                        <th scope="col">
+                            Team
+                        </th>
+                        <th scope="col">Result</th>
+                        <th scope="col">Team</th>
+                        </thead>
+                        <thead>
+                        <th scope="row">2:00</th>
+                        <th scope="row">
+                            <div class="d-flex flex-row justify-content-center">
+                                <img src="sources/img/100thieves_logo.png" alt="cos" width="50px" height="25px">
+                                <p>100Thieves</p>
+                            </div>
+                        </th>
+                        <th scope="row">8:10</th>
+                        <th scope="row">
+                            <div class="d-flex flex-row justify-content-center">
+                                <img src="sources/img/clg_logo.png" alt="cos" width="50px" height="25px">
+                                <p>CLG</p>
+                            </div>
+                        </th>
+                        </thead>
+                        <thead>
+                        <th scope="row">16:00</th>
+                        <th scope="row">
+                            <div class="d-flex flex-row justify-content-center">
+                                <img src="sources/img/team_liquid_log.png" alt="cos" width="50px" height="25px">
+                                <p>100Thieves</p>
+                            </div>
+                        </th>
+                        <th scope="row">16-4</th>
+                        <th scope="row">
+                            <div class="d-flex flex-row justify-content-center">
+                                <img src="sources/img/clg_logo.png" alt="cos" width="50px" height="25px">
+                                <p>CLG</p>
+                            </div>
+                        </th>
+                        </thead>
+                        <thead>
+                        <th scope="row">2:00</th>
+                        <th scope="row">
+                            <div class="d-flex flex-row justify-content-center">
+                                <img src="sources/img/100thieves_logo.png" alt="cos" width="50px" height="25px">
+                                <p>100Thieves</p>
+                            </div>
+                        </th>
+                        <th scope="row">4-16</th>
+                        <th scope="row">
+                            <div class="d-flex flex-row justify-content-center">
+                                <img src="sources/img/clg_logo.png" alt="cos" width="50px" height="25px">
+                                <p>CLG</p>
+                            </div>
+                        </th>
+                        </thead>
+                        <thead>
+                        <th scope="row">16:00</th>
+                        <th scope="row">
+                            <div class="d-flex flex-row justify-content-center">
+                                <img src="sources/img/team_liquid_log.png" alt="cos" width="50px" height="25px">
+                                <p>100Thieves</p>
+                            </div>
+                        </th>
+                        <th scope="row">0-16</th>
+                        <th scope="row">
+                            <div class="d-flex flex-row justify-content-center">
+                                <img src="sources/img/clg_logo.png" alt="cos" width="50px" height="25px">
+                                <p>CLG</p>
+                            </div>
+                        </th>
+                        </thead>
+                        <thead>
+                        <th scope="row">2:00</th>
+                        <th scope="row">
+                            <div class="d-flex flex-row justify-content-center">
+                                <img src="sources/img/100thieves_logo.png" alt="cos" width="50px" height="25px">
+                                <p>100Thieves</p>
+                            </div>
+                        </th>
+                        <th scope="row">16-0</th>
+                        <th scope="row">
+                            <div class="d-flex flex-row justify-content-center">
+                                <img src="sources/img/clg_logo.png" alt="cos" width="50px" height="25px">
+                                <p>CLG</p>
+                            </div>
+                        </th>
+                        </thead>
+                        <thead>
+                        <th scope="row">16:00</th>
+                        <th scope="row">
+                            <div class="d-flex flex-row justify-content-center">
+                                <img src="sources/img/team_liquid_log.png" alt="cos" width="50px" height="25px">
+                                <p>100Thieves</p>
+                            </div>
+                        </th>
+                        <th scope="row">16-3</th>
+                        <th scope="row">
+                            <div class="d-flex flex-row justify-content-center">
+                                <img src="sources/img/clg_logo.png" alt="cos" width="50px" height="25px">
+                                <p>CLG</p>
+                            </div>
+                        </th>
+                        </thead>
+
+                    </table>
+                </div>
+            </div>
         </div>
 
         <div class="about">
@@ -115,32 +156,32 @@ if(!isset($_SESSION['id']))
                     <div class="about_col_3 col-xs-3">
                         <div class="d-flex h-100 align-items-center justify-content-center">
                             <ul>
-                                <li>dupa</li>
-                                <li>dupa</li>
+                                <li>about</li>
+                                <li>about</li>
                             </ul>
                         </div>
                     </div>
                     <div class="about_col_3 col-xs-3">
                         <div class="d-flex h-100 align-items-center justify-content-center">
                             <ul>
-                                <li>dupa</li>
-                                <li>dupa</li>
+                                <li>about</li>
+                                <li>about</li>
                             </ul>
                         </div>
                     </div>
                     <div class="about_col_3 col-xs-3">
                         <div class="d-flex h-100 align-items-center justify-content-center">
                             <ul>
-                                <li>dupa</li>
-                                <li>dupa</li>
+                                <li>about</li>
+                                <li>about</li>
                             </ul>
                         </div>
                     </div>
                     <div class="about_col_3 col-xs-3">
                         <div class="d-flex h-100 align-items-center justify-content-center">
                             <ul>
-                                <li>dupa</li>
-                                <li>dupa</li>
+                                <li>about</li>
+                                <li>about</li>
                             </ul>
                         </div>
                     </div>

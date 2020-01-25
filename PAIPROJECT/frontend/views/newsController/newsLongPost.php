@@ -18,6 +18,7 @@ if (!isset($_SESSION['id']))
               integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
               crossorigin="anonymous">
         <link type="text/css" rel="stylesheet" href="frontend/css/board_news_layout_css.css">
+        <link type="text/css" rel="stylesheet" href="frontend/css/long_post_css.css">
         <link href="https://fonts.googleapis.com/css?family=Noto+Serif+JP&display=swap" rel="stylesheet">
         <script src="https://kit.fontawesome.com/608fe230d5.js" crossorigin="anonymous"></script>
 
@@ -36,24 +37,24 @@ if (!isset($_SESSION['id']))
         <div class="container" id="main_part_container">
             <br>
             <br>
-            <?php foreach($news as $news_example):?>
-            <div class="news_row row w-75 justify-content-center">
-                <div class="col-sm-2 d-flex news_first_col align-items-center justify-content-center" style="border:none">
-                    <img src="<?php echo $news_example->getCountryFlagDir(); ?>" alt="poland">
-                </div>
-                <div class="news_second_col col-sm-10 justify-content-center">
-                    <p class="text-center m-0 mt-5"><?php echo $news_example->getNewsShortPost(); ?> </p>
-                    <form action="?page=displayNewsLongPost" method="post" class="text-center">
-                        <input type="text" style="display: none" name="news_id" value="<?php echo $news_example->getId(); ?>">
-                        <input type="text" style="display:none" name="news_nickname" value="<?php echo $news_example->getNickname(); ?>">
-                        <input type="text" style="display:none" name="news_short_post" value="<?php echo $news_example->getNewsShortPost(); ?>">
-                        <input type="text" style="display:none" name="news_file_dir" value="<?php   echo $news_example->getNewsFileDir(); ?>">
-                        <input type="text" style="display:none" name="news_country_flag_dir" value="<?php  echo $news_example->getCountryFlagDir(); ?>">
-                        <button type="submit" class="btn btn-dark float-right mb-1">Display Post</button>
-                    </form>
-                </div>
+            <div class="post_title row w-100 m-0 justify-content-center">
+                <img class="m-0" src="<?php echo $flag_directory ?>" style="width: 64px;height:64px;">
+                <h1 class="text-primary mt-2"><?php echo $description ?></h1>
+                <br>
             </div>
-            <?php endforeach; ?>
+            <br>
+            <br>
+            <div class="row w-100 m-0 justify-content-center">
+                <p class="text-justify" style="color:white">
+                    <?php include("$post_directory") ?>
+                </p>
+                <br>
+            </div>
+
+            <div class="row w-100 m-0 justify-content-center">
+                <p class="text-center text-warning"><?php echo $nickname ?></p>
+            </div>
+
 
         </div>
 
